@@ -2,25 +2,17 @@ package com.endava.calculator;
 
 import com.endava.calculator.basic.Basic;
 import com.endava.calculator.basic.BasicOperations;
-import com.endava.extensions.MyTestExecutionListener;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 //@ExtendWith(TestReporterExtension.class)
-
-//@ExtendWith(SpringExtension.class)
-//@ContextConfiguration
-@TestExecutionListeners(value = {MyTestExecutionListener.class, DependencyInjectionTestExecutionListener.class})
-
 
 public class CalculatorTest {
 
@@ -107,7 +99,7 @@ public class CalculatorTest {
     }
 
     @ParameterizedTest
-    @CsvSource( {"1,2,3", "2,4,5"} )
+    @CsvSource({"1,2,3", "2,4,5"})
     @CsvFileSource(resources = "numberSource.csv")
     public void shouldAddMoreThan2Operands(Integer a1, Integer a2, Integer a3) {
         //WHERE
