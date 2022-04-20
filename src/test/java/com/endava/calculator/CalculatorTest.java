@@ -2,21 +2,27 @@ package com.endava.calculator;
 
 import com.endava.calculator.basic.Basic;
 import com.endava.calculator.basic.BasicOperations;
-import com.endava.extensions.TestReporterExtension;
+import com.endava.extensions.MyTestExecutionListener;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@ExtendWith(TestReporterExtension.class)
+//@ExtendWith(TestReporterExtension.class)
 
-public class CalculatorIT {
+//@ExtendWith(SpringExtension.class)
+//@ContextConfiguration
+@TestExecutionListeners(value = {MyTestExecutionListener.class, DependencyInjectionTestExecutionListener.class})
+
+
+public class CalculatorTest {
 
     private BasicOperations basic;
 
@@ -34,12 +40,12 @@ public class CalculatorIT {
     @BeforeEach
     public void setUpEachTest() {
         basic = new Basic();
-        System.out.println("Before Each");
+        System.out.println("Before Each\n");
     }
 
     @AfterEach
     public void tearDownEachTest() {
-        System.out.println("After Each");
+        System.out.println("After Each\n");
     }
 
 
