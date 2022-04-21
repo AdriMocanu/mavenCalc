@@ -4,6 +4,9 @@ import com.endava.calculator.expert.Expert;
 import com.endava.calculator.expert.ExpertOperations;
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+
 public class PowTest {
 
     @Test
@@ -15,7 +18,10 @@ public class PowTest {
         Double result = expert.pow(10, 2);
 
         //THEN
-        System.out.println(result);
+        assertThat(result, is(100D));
+        assertThat(result, greaterThan(-10D));
+        assertThat(result, lessThan(1000D));
+        assertThat(result, notNullValue());
     }
 
     @Test
@@ -27,7 +33,10 @@ public class PowTest {
         Double result = expert.pow(-2, 2);
 
         //THEN
-        System.out.println(result);
+        assertThat(result, is(4D));
+        assertThat(result, greaterThan(-10D));
+        assertThat(result, lessThan(10D));
+        assertThat(result, notNullValue());
     }
 
     @Test
@@ -39,7 +48,10 @@ public class PowTest {
         Double result = expert.pow(2, -2);
 
         //THEN
-        System.out.println(result);
+        assertThat(result, is(0.25D));
+        assertThat(result, greaterThan(-10D));
+        assertThat(result, lessThan(10D));
+        assertThat(result, notNullValue());
     }
 
     @Test
@@ -51,7 +63,10 @@ public class PowTest {
         Double result = expert.pow(0, 2);
 
         //THEN
-        System.out.println(result);
+        assertThat(result, is(0D));
+        assertThat(result, greaterThan(-10D));
+        assertThat(result, lessThan(10D));
+        assertThat(result, notNullValue());
     }
 
     @Test
@@ -63,7 +78,10 @@ public class PowTest {
         Double result = expert.pow(2, 0);
 
         //THEN
-        System.out.println(result);
+        assertThat(result, is(1D));
+        assertThat(result, greaterThan(-10D));
+        assertThat(result, lessThan(10D));
+        assertThat(result, notNullValue());
     }
 
 

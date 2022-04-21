@@ -4,6 +4,10 @@ import com.endava.calculator.basic.Basic;
 import com.endava.calculator.basic.BasicOperations;
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class MultiplyTest {
 
     @Test
@@ -12,10 +16,13 @@ public class MultiplyTest {
         BasicOperations basic = new Basic();
 
         //WHERE
-        Long result = basic.multiply(2,4);
+        Long result = basic.multiply(2, 4);
 
         //THEN
-        System.out.println(result);
+        assertThat(result, is(8L));
+        assertThat(result, greaterThan(4L));
+        assertThat(result, lessThan(10L));
+        assertThat(result, notNullValue());
     }
 
     @Test
@@ -24,10 +31,13 @@ public class MultiplyTest {
         BasicOperations basic = new Basic();
 
         //WHERE
-        Long result = basic.multiply(-2,4);
+        Long result = basic.multiply(-2, 4);
 
         //THEN
-        System.out.println(result);
+        assertThat(result, is(-8L));
+        assertThat(result, greaterThan(-10L));
+        assertThat(result, lessThan(10L));
+        assertThat(result, notNullValue());
     }
 
     @Test
@@ -36,22 +46,33 @@ public class MultiplyTest {
         BasicOperations basic = new Basic();
 
         //WHERE
-        Long result = basic.multiply(165,456);
+        Long result = basic.multiply(165, 456);
 
         //THEN
-        System.out.println(result);
+        assertThat(result, is(75240L));
+        assertThat(result, greaterThan(100L));
+        assertThat(result, lessThan(100000L));
+        assertThat(result, notNullValue());
     }
 
     @Test
     public void shouldAdd0Operand() {
-        //GIVEN
-        BasicOperations basic = new Basic();
 
-        //WHERE
-        Long result = basic.multiply(5,0);
+        assertThrows(AssertionError.class, () ->
 
-        //THEN
-        System.out.println(result);
+        {
+            //GIVEN
+            BasicOperations basic = new Basic();
+
+            //WHERE
+            Long result = basic.multiply(5, 0);
+
+            //THEN
+            assertThat(result, is(0L));
+            assertThat(result, greaterThan(-10L));
+            assertThat(result, lessThan(10L));
+            assertThat(result, nullValue());
+        });
     }
 
     @Test
@@ -63,7 +84,11 @@ public class MultiplyTest {
         Long result = basic.multiply(5);
 
         //THEN
-        System.out.println(result);
+        assertThat(result, is(5L));
+        assertThat(result, greaterThan(-10L));
+        assertThat(result, lessThan(10L));
+        assertThat(result, notNullValue());
+
     }
 
     @Test
@@ -75,6 +100,9 @@ public class MultiplyTest {
         Long result = basic.multiply(5, 2, 5);
 
         //THEN
-        System.out.println(result);
+        assertThat(result, is(50L));
+        assertThat(result, greaterThan(-10L));
+        assertThat(result, lessThan(100L));
+        assertThat(result, notNullValue());
     }
 }
